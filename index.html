@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Website Rebuild Brief</title>
+<meta name="description" content="A short brief so we can plan your new website.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@600;700&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f5f2;--card:#fff;--ink:#16181c;--muted:#5d636d;--line:#e3e1dc;--accent:#1f5c4a;--accent-ink:#fff;--soft:#e8f0ec;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111315;--card:#191c1f;--ink:#eceae6;--muted:#9aa0a8;--line:#2a2e33;--accent:#5fb394;--accent-ink:#0d1210;--soft:#1d2a25}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 "Public Sans",system-ui,sans-serif}
+.wrap{max-width:680px;margin:0 auto;padding:28px 16px 120px}
+header{padding:12px 0 22px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.brand{font:700 13px/1 "Schibsted Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font:700 clamp(28px,7vw,40px)/1.08 "Schibsted Grotesk",sans-serif;margin:14px 0 10px;letter-spacing:-.01em}
+.lede{color:var(--muted);margin:0}
+.progress{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;margin:0 0 6px}
+.bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.bar-label{font-size:13px;color:var(--muted);margin-top:6px;font-variant-numeric:tabular-nums}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 18px;margin:14px 0}
+h2{font:700 19px/1.25 "Schibsted Grotesk",sans-serif;margin:0 0 4px}
+.sub{color:var(--muted);font-size:14px;margin:0 0 14px}
+.q{margin:18px 0 0}
+.q:first-of-type{margin-top:6px}
+label.t,.t{display:block;font-weight:600;margin:0 0 8px}
+.t small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=url],input[type=tel],textarea,select{
+  width:100%;font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 13px;min-height:46px}
+textarea{min-height:88px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;padding:9px 13px;border:1px solid var(--line);border-radius:99px;font-size:15px;background:var(--bg);user-select:none}
+.chips input:checked+span{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.chips input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.foot{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom))}
+.foot .in{max-width:680px;margin:0 auto;display:flex;gap:10px}
+button{font:600 16px/1 "Public Sans",sans-serif;border-radius:12px;padding:15px 16px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+button.go{flex:1;background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.note{font-size:13px;color:var(--muted);margin:18px 2px 0}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 14px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.bar i,.toast{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">SPIKE Studio</div>
+    <h1>Your new website: a short brief</h1>
+    <p class="lede">Answer what you can. Skip anything you're unsure about and we'll go over it on a call. When you're done, tap <b>Send on WhatsApp</b> and your answers come straight to us.</p>
+  </header>
+
+  <div class="progress" aria-hidden="true"><div class="bar"><i id="bar"></i></div><div class="bar-label" id="barLabel">0 answered</div></div>
+
+  <form id="f" autocomplete="on">
+
+  <section>
+    <h2>1. About you</h2>
+    <p class="sub">The basics.</p>
+    <div class="q"><label class="t" for="biz">Business name</label><input type="text" id="biz" name="Business name" autocomplete="organization"></div>
+    <div class="q"><label class="t" for="site">Current website <small>(link)</small></label><input type="url" id="site" name="Current website" inputmode="url" placeholder="www."></div>
+    <div class="q"><label class="t" for="what">What do you do, in one line?</label><input type="text" id="what" name="What the business does"></div>
+    <div class="q"><label class="t" for="who">Your name and role</label><input type="text" id="who" name="Contact name and role" autocomplete="name"></div>
+    <div class="q"><label class="t" for="decide">Who makes the final call on the website?</label><input type="text" id="decide" name="Decision maker"></div>
+  </section>
+
+  <section>
+    <h2>2. Why rebuild</h2>
+    <p class="sub">What should the new site fix?</p>
+    <div class="q"><span class="t">Main goal <small>(pick up to 2)</small></span>
+      <div class="chips" data-name="Main goal" data-max="2">
+        <label><input type="checkbox" value="More calls / WhatsApp enquiries"><span>More calls / WhatsApp enquiries</span></label>
+        <label><input type="checkbox" value="More bookings"><span>More bookings</span></label>
+        <label><input type="checkbox" value="Sell online"><span>Sell online</span></label>
+        <label><input type="checkbox" value="Look more trusted / premium"><span>Look more trusted / premium</span></label>
+        <label><input type="checkbox" value="Show up on Google"><span>Show up on Google</span></label>
+        <label><input type="checkbox" value="Hire staff"><span>Hire staff</span></label>
+      </div></div>
+    <div class="q"><span class="t">What's wrong with the current site?</span>
+      <div class="chips" data-name="Problems with current site">
+        <label><input type="checkbox" value="Looks old"><span>Looks old</span></label>
+        <label><input type="checkbox" value="Bad on phones"><span>Bad on phones</span></label>
+        <label><input type="checkbox" value="Slow"><span>Slow</span></label>
+        <label><input type="checkbox" value="No enquiries from it"><span>No enquiries from it</span></label>
+        <label><input type="checkbox" value="Wrong / outdated info"><span>Wrong / outdated info</span></label>
+        <label><input type="checkbox" value="Hard to update"><span>Hard to update</span></label>
+        <label><input type="checkbox" value="Not on Google"><span>Not on Google</span></label>
+        <label><input type="checkbox" value="No website yet"><span>No website yet</span></label>
+      </div></div>
+    <div class="q"><label class="t" for="keep">Anything on the current site you want to keep?</label><textarea id="keep" name="Keep from current site"></textarea></div>
+  </section>
+
+  <section>
+    <h2>3. Customers and offer</h2>
+    <p class="sub">Who the site is for and what it should sell.</p>
+    <div class="q"><label class="t" for="cust">Who are your best customers? <small>(type, area, language)</small></label><textarea id="cust" name="Best customers"></textarea></div>
+    <div class="q"><label class="t" for="top">Top 3 services or products to push</label><textarea id="top" name="Top services / products"></textarea></div>
+    <div class="q"><label class="t" for="why">Why do customers pick you over others?</label><textarea id="why" name="Why customers choose you"></textarea></div>
+    <div class="q"><label class="t" for="comp">Main competitors <small>(names or links)</small></label><textarea id="comp" name="Competitors"></textarea></div>
+    <div class="q"><span class="t">What should a visitor do first?</span>
+      <div class="chips" data-name="Main action" data-max="1">
+        <label><input type="checkbox" value="WhatsApp us"><span>WhatsApp us</span></label>
+        <label><input type="checkbox" value="Call us"><span>Call us</span></label>
+        <label><input type="checkbox" value="Book online"><span>Book online</span></label>
+        <label><input type="checkbox" value="Buy online"><span>Buy online</span></label>
+        <label><input type="checkbox" value="Fill a form / get a quote"><span>Fill a form / get a quote</span></label>
+        <label><input type="checkbox" value="Visit the shop"><span>Visit the shop</span></label>
+      </div></div>
+  </section>
+
+  <section>
+    <h2>4. Look and feel</h2>
+    <p class="sub">Taste matters more than detail here.</p>
+    <div class="q"><label class="t" for="likes">2–3 websites you like <small>(any industry) and what you like about them</small></label><textarea id="likes" name="Websites they like"></textarea></div>
+    <div class="q"><label class="t" for="dislikes">Anything you don't want? <small>(colours, styles, sites)</small></label><textarea id="dislikes" name="Don't want"></textarea></div>
+    <div class="q"><span class="t">Feel <small>(pick up to 3)</small></span>
+      <div class="chips" data-name="Feel" data-max="3">
+        <label><input type="checkbox" value="Clean and simple"><span>Clean and simple</span></label>
+        <label><input type="checkbox" value="Premium / luxury"><span>Premium / luxury</span></label>
+        <label><input type="checkbox" value="Bold and loud"><span>Bold and loud</span></label>
+        <label><input type="checkbox" value="Warm and friendly"><span>Warm and friendly</span></label>
+        <label><input type="checkbox" value="Corporate / serious"><span>Corporate / serious</span></label>
+        <label><input type="checkbox" value="Modern / techy"><span>Modern / techy</span></label>
+        <label><input type="checkbox" value="Traditional"><span>Traditional</span></label>
+      </div></div>
+    <div class="q"><span class="t">Brand assets you already have</span>
+      <div class="chips" data-name="Brand assets">
+        <label><input type="checkbox" value="Logo"><span>Logo</span></label>
+        <label><input type="checkbox" value="Brand colours"><span>Brand colours</span></label>
+        <label><input type="checkbox" value="Brand fonts"><span>Brand fonts</span></label>
+        <label><input type="checkbox" value="Brand guide"><span>Brand guide</span></label>
+        <label><input type="checkbox" value="None yet"><span>None yet</span></label>
+      </div></div>
+  </section>
+
+  <section>
+    <h2>5. Content</h2>
+    <p class="sub">Words, photos, languages, pages.</p>
+    <div class="q"><span class="t">Photos and video</span>
+      <div class="chips" data-name="Photos / video" data-max="1">
+        <label><input type="checkbox" value="We have good photos"><span>We have good photos</span></label>
+        <label><input type="checkbox" value="Some, need more"><span>Some, need more</span></label>
+        <label><input type="checkbox" value="None, need a shoot or stock"><span>None, need a shoot or stock</span></label>
+      </div></div>
+    <div class="q"><span class="t">Website text</span>
+      <div class="chips" data-name="Website text" data-max="1">
+        <label><input type="checkbox" value="We'll write it"><span>We'll write it</span></label>
+        <label><input type="checkbox" value="You write it, we approve"><span>You write it, we approve</span></label>
+        <label><input type="checkbox" value="Reuse current site text"><span>Reuse current site text</span></label>
+      </div></div>
+    <div class="q"><span class="t">Languages</span>
+      <div class="chips" data-name="Languages">
+        <label><input type="checkbox" value="English"><span>English</span></label>
+        <label><input type="checkbox" value="Arabic"><span>Arabic</span></label>
+        <label><input type="checkbox" value="Other"><span>Other</span></label>
+      </div></div>
+    <div class="q"><span class="t">Pages you need</span>
+      <div class="chips" data-name="Pages">
+        <label><input type="checkbox" value="Home"><span>Home</span></label>
+        <label><input type="checkbox" value="Services"><span>Services</span></label>
+        <label><input type="checkbox" value="About"><span>About</span></label>
+        <label><input type="checkbox" value="Gallery / projects"><span>Gallery / projects</span></label>
+        <label><input type="checkbox" value="Pricing"><span>Pricing</span></label>
+        <label><input type="checkbox" value="Reviews"><span>Reviews</span></label>
+        <label><input type="checkbox" value="Blog / news"><span>Blog / news</span></label>
+        <label><input type="checkbox" value="Careers"><span>Careers</span></label>
+        <label><input type="checkbox" value="Contact"><span>Contact</span></label>
+      </div></div>
+    <div class="q"><span class="t">Features</span>
+      <div class="chips" data-name="Features">
+        <label><input type="checkbox" value="WhatsApp button"><span>WhatsApp button</span></label>
+        <label><input type="checkbox" value="Online booking"><span>Online booking</span></label>
+        <label><input type="checkbox" value="Online payment"><span>Online payment</span></label>
+        <label><input type="checkbox" value="Google reviews"><span>Google reviews</span></label>
+        <label><input type="checkbox" value="Map / locations"><span>Map / locations</span></label>
+        <label><input type="checkbox" value="Quote / enquiry form"><span>Quote / enquiry form</span></label>
+        <label><input type="checkbox" value="Product catalogue"><span>Product catalogue</span></label>
+        <label><input type="checkbox" value="Live chat"><span>Live chat</span></label>
+      </div></div>
+  </section>
+
+  <section>
+    <h2>6. Technical</h2>
+    <p class="sub">Fine to answer "not sure".</p>
+    <div class="q"><span class="t">Domain and hosting</span>
+      <div class="chips" data-name="Domain / hosting" data-max="1">
+        <label><input type="checkbox" value="We own it and have the login"><span>We own it and have the login</span></label>
+        <label><input type="checkbox" value="Old agency / developer has it"><span>Old agency / developer has it</span></label>
+        <label><input type="checkbox" value="Not sure"><span>Not sure</span></label>
+        <label><input type="checkbox" value="Need a new domain"><span>Need a new domain</span></label>
+      </div></div>
+    <div class="q"><span class="t">Who updates the site after launch?</span>
+      <div class="chips" data-name="Updates after launch" data-max="1">
+        <label><input type="checkbox" value="Our team"><span>Our team</span></label>
+        <label><input type="checkbox" value="You (monthly care)"><span>You (monthly care)</span></label>
+        <label><input type="checkbox" value="Rarely needs changes"><span>Rarely needs changes</span></label>
+      </div></div>
+    <div class="q"><label class="t" for="tools">Tools you already use <small>(booking system, CRM, Instagram, Google Business)</small></label><input type="text" id="tools" name="Tools already used"></div>
+  </section>
+
+  <section>
+    <h2>7. Timing</h2>
+    <p class="sub">When you need it and how to reach you.</p>
+    <div class="q"><label class="t" for="when">When do you need it live? <small>(and any event or launch it's tied to)</small></label><input type="text" id="when" name="Go-live date"></div>
+    <div class="q"><label class="t" for="call">Best time for a short call</label><input type="text" id="call" name="Best call time"></div>
+    <div class="q"><label class="t" for="else">Anything else we should know?</label><textarea id="else" name="Anything else"></textarea></div>
+  </section>
+
+  <p class="note">Your answers are only sent when you tap Send on WhatsApp. Nothing is stored on this page.</p>
+  </form>
+</div>
+
+<div class="foot"><div class="in">
+  <button type="button" id="copy">Copy</button>
+  <button type="button" class="go" id="send">Send on WhatsApp</button>
+</div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// Your WhatsApp number: digits only, with country code (e.g. "9715XXXXXXXX"). Leave "" to let the customer choose the chat.
+const WA_NUMBER = "971585966420";
+
+const f = document.getElementById('f');
+const textFields = [...f.querySelectorAll('input[type=text],input[type=url],textarea')];
+const groups = [...f.querySelectorAll('.chips')];
+
+// Cap multi-picks where data-max is set: picking past the cap unticks the oldest pick.
+groups.forEach(g => {
+  const max = +g.dataset.max || 0;
+  if (!max) return;
+  const order = [];
+  g.addEventListener('change', e => {
+    const box = e.target;
+    const i = order.indexOf(box);
+    if (i > -1) order.splice(i, 1);
+    if (box.checked) {
+      order.push(box);
+      while (order.length > max) order.shift().checked = false;
+    }
+  });
+});
+
+function answers() {
+  const rows = [];
+  // Keep form order: walk every question block.
+  f.querySelectorAll('.q').forEach(q => {
+    const t = q.querySelector('input[type=text],input[type=url],textarea');
+    if (t) { const v = t.value.trim(); if (v) rows.push([t.name, v]); return; }
+    const g = q.querySelector('.chips');
+    if (g) {
+      const v = [...g.querySelectorAll('input:checked')].map(i => i.value);
+      if (v.length) rows.push([g.dataset.name, v.join(', ')]);
+    }
+  });
+  return rows;
+}
+
+function message() {
+  const rows = answers();
+  const biz = document.getElementById('biz').value.trim();
+  return '*Website rebuild brief' + (biz ? ' — ' + biz : '') + '*\n\n' +
+    rows.map(([k, v]) => '*' + k + ':* ' + v).join('\n');
+}
+
+const total = textFields.length + groups.length;
+function progress() {
+  const n = answers().length;
+  document.getElementById('bar').style.width = (n / total * 100) + '%';
+  document.getElementById('barLabel').textContent = n + ' of ' + total + ' answered';
+}
+f.addEventListener('input', progress);
+f.addEventListener('change', progress);
+progress();
+
+function toast(s) {
+  const t = document.getElementById('toast');
+  t.textContent = s; t.classList.add('on');
+  clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('on'), 2200);
+}
+
+document.getElementById('send').addEventListener('click', () => {
+  if (!answers().length) { toast('Add at least one answer first'); return; }
+  const url = 'https://wa.me/' + WA_NUMBER.replace(/\D/g, '') + '?text=' + encodeURIComponent(message());
+  window.open(url, '_blank', 'noopener');
+});
+
+document.getElementById('copy').addEventListener('click', async () => {
+  if (!answers().length) { toast('Add at least one answer first'); return; }
+  try { await navigator.clipboard.writeText(message()); toast('Copied. Paste it into WhatsApp'); }
+  catch (_) { toast('Copy blocked. Use Send on WhatsApp'); }
+});
+</script>
+</body>
+</html>
